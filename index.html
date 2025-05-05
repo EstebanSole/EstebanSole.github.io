@@ -8,22 +8,26 @@
       margin: 0;
       padding: 0;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
       background-color: #fce4ec;
+      position: relative;
     }
 
     h1 {
       font-size: 2em;
       margin-bottom: 40px;
+      z-index: 1;
     }
 
     .opciones {
       display: flex;
       gap: 50px;
+      z-index: 1;
     }
 
     .opcion {
@@ -36,6 +40,32 @@
     #no-container {
       position: absolute;
     }
+
+    .gif-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .gif-left {
+      left: 0;
+    }
+
+    .gif-right {
+      right: 0;
+    }
+
+    .gif-container img {
+      width: 200px;
+      height: auto;
+    }
+
+    .gif-visible {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -44,33 +74,71 @@
     <label class="opcion">
       <input type="checkbox" id="si"> Sí
     </label>
-    <span>
     <div id="no-container" class="opcion">
       <input type="checkbox" id="no"> No
     </div>
   </div>
 
+  <!-- GIFs ocultos -->
+  <div id="gifLeft" class="gif-container gif-left">
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHlyMjhsa2I2emRoenBmcjMxcmFrbThtZmo1bGdicWJwdXBocGtkZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gaAGMlgERD9Tpal67Q/giphy.gif" alt="amor izquierdo">
+  </div>
+  <div id="gifRight" class="gif-container gif-right">
+    <img src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="amor derecho">
+  </div>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <script>
-    const noCheckbox = document.getElementById('no');
-    const noContainer = document.getElementById('no-container');
+  const noCheckbox = document.getElementById('no');
+  const noContainer = document.getElementById('no-container');
+  const siCheckbox = document.getElementById('si');
+  const gifLeft = document.getElementById('gifLeft');
+  const gifRight = document.getElementById('gifRight');
 
-    noCheckbox.addEventListener('mouseenter', () => {
-      // Obtener el ancho y alto de la ventana
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
+  let confettiInterval = null;
 
-      // Generar coordenadas aleatorias dentro del rango visible
-      const x = Math.random() * (windowWidth - 100);
-      const y = Math.random() * (windowHeight - 50);
+  // Mover el "No" aleatoriamente
+  noCheckbox.addEventListener('mouseenter', () => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const x = Math.random() * (windowWidth - 100);
+    const y = Math.random() * (windowHeight - 50);
+    noContainer.style.left = `${x}px`;
+    noContainer.style.top = `${y}px`;
+  });
 
-      noContainer.style.left = `${x}px`;
-      noContainer.style.top = `${y}px`;
+  // Prevenir selección del checkbox "No"
+  noCheckbox.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
+
+  // Mostrar confeti y GIFs al seleccionar "Sí"
+  siCheckbox.addEventListener('change', () => {
+    if (siCheckbox.checked && !confettiInterval) {
+      // Iniciar confeti infinito
+      confettiInterval = setInterval(() => {
+  // Disparos múltiples en cada iteración
+  for (let i = 0; i < 5; i++) {
+    confetti({
+      particleCount: 25,
+      spread: 120,
+      origin: {
+        x: Math.random(),     // posición horizontal aleatoria
+        y: Math.random() * 0.6 // solo parte superior de la pantalla
+      }
     });
+  }
+}, 100); // frecuencia más alta
 
-    // Evitar que se pueda seleccionar el checkbox "No"
-    noCheckbox.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-  </script>
+
+      // Mostrar GIFs
+      gifLeft.classList.add('gif-visible');
+      gifRight.classList.add('gif-visible');
+    }
+  });
+</script>
+
 </body>
 </html>
