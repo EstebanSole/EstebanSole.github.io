@@ -1,592 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Quieres salir conmigo?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #fce4ec;
+    }
 
-    <head>
-        <meta charset="utf-8">
-        <title>GoatLand</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+    h1 {
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
 
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet"> 
+    .opciones {
+      display: flex;
+      gap: 50px;
+    }
 
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    .opcion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
 
-        <!-- Libraries Stylesheet -->
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    #no-container {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Quieres salir conmigo?</h1>
+  <div class="opciones">
+    <label class="opcion">
+      <input type="checkbox" id="si"> Sí
+    </label>
+    <span>
+    <div id="no-container" class="opcion">
+      <input type="checkbox" id="no"> No
+    </div>
+  </div>
 
+  <script>
+    const noCheckbox = document.getElementById('no');
+    const noContainer = document.getElementById('no-container');
 
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+    noCheckbox.addEventListener('mouseenter', () => {
+      // Obtener el ancho y alto de la ventana
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
 
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+      // Generar coordenadas aleatorias dentro del rango visible
+      const x = Math.random() * (windowWidth - 100);
+      const y = Math.random() * (windowHeight - 50);
 
-    <body>
+      noContainer.style.left = `${x}px`;
+      noContainer.style.top = `${y}px`;
+    });
 
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid header position-relative overflow-hidden p-0">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index.html" class="navbar-brand p-0">
-                    <h1 class="display-6 text-primary m-0"></i>GoatLand</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="references.html" class="nav-item nav-link">References</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                    </div>
-                    <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
-                </div>
-            </nav>
-
-
-            <!-- Hero Header Start -->
-            <div class="hero-header overflow-hidden px-5">
-                <div class="rotate-img">
-                    <img src="img/sty-1.png" class="img-fluid w-100" alt="">
-                    <div class="rotate-sty-2"></div>
-                </div>
-                <div class="row gy-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
-                        <h1 class="display-4 text-dark mb-4 wow fadeInUp" data-wow-delay="0.3s">Welcome to your salvation</h1>
-                        <p class="fs-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">We have the highest employment rate in the world, reaching 101%, that is, each person obtains up to 2 jobs.</p>
-                        <a href="#" class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.7s">Get Started</a>
-                    </div>
-                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-                        <img src="img/hero-img-1.png" class="img-fluid w-100 h-100" alt="">
-                    </div>
-                </div>
-            </div>
-            <!-- Hero Header End -->
-        </div>
-        <!-- Navbar & Hero End -->
-
-
-        <!-- About Start -->
-        <div class="container-fluid overflow-hidden py-5"  style="margin-top: 6rem;">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="RotateMoveLeft">
-                            <img src="img/about-1.png" class="img-fluid w-100" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <h4 class="mb-1 text-primary">About Us</h4>
-                        <h1 class="display-5 mb-4">A little part of our city</h1>
-                        <p class="mb-4">We are a city that after the war of succession is returning to its greatness of previous years. 7644 of goats inhabit our streets, being a city in which we coexist with humans. We expect that in the coming years the number of inhabitants will continue to grow.
-                        </p>
-                        <a href="#" class="btn btn-primary rounded-pill py-3 px-5">About More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
-
-
-        <!-- Service Start -->
-        <div class="container-fluid service py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
-                    <h4 class="mb-1 text-primary">GoatLand Service </h4>
-                    <h1 class="display-5 mb-4">What can we do for you?</h1>
-                    <p class="mb-0">At GoatLand we strive to provide our residents with the best services to make their stay in the city as pleasant and easy as possible.
-                    </p>
-                </div>
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-mail-bulk fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Bus and Train</h4>
-                                <p class="mb-4"> If you get the monthly ‘BonoGoat’ you can enjoy buses and trains whenever you want for the amount of 20 Goats.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fa fa-subway fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">24H Taxi </h4>
-                                <p class="mb-4">We have our own taxi company in the city, so you can get around at any time.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fa fa-subway fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Waste collection</h4>
-                                <p class="mb-4"> Every day of the year the rubbish truck will pass through the city at 20:30 to keep it always clean.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-sitemap fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Plenty of events</h4>
-                                <p class="mb-4">In the city you will never get bored as there are always open events and festivals.    
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-mail-bulk fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Employment website</h4>
-                                <p class="mb-4">The city has a website where you can find the job of your dreams in the city.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-thumbs-up fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Medical Service </h4>
-                                <p class="mb-4"> You can enjoy the best medical services in town for only 700 Goats per year.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fa fa-subway fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Recycling bonus</h4>
-                                <p class="mb-4">For every 10kg of plastic you recycle, you will be credited with 5 Goats.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item text-center rounded p-4">
-                            <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-sitemap fa-5x text-secondary"></i></div>
-                            <div class="service-content">
-                                <h4 class="mb-4">Own Internet</h4>
-                                <p class="mb-4">GoatLand has its own Internet network where you can have the best Wifi, mobile data and rates in town.
-                                </p>
-                                <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Service End -->
-
-
-        <!-- Feature Start -->
-        <div class="container-fluid feature overflow-hidden py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
-                    <h4 class="text-primary">Our Feature</h4>
-                    <h1 class="display-5 mb-4">Important Features On Goat Land</h1>
-                    <p class="mb-0">We offer a lot of important Features to our goats and inhabitants of our city, our taxes are well managed, and you'll see it throughout your stay in the city
-                    </p>
-                </div>
-                <div class="row g-4 justify-content-center text-center mb-5">
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="text-center p-4">
-                            <div class="d-inline-block rounded bg-light p-4 mb-4"><i class="fas fa-envelope fa-5x text-secondary"></i></div>
-                            <div class="feature-content">
-                                <a href="#" class="h4">Free Goats <i class="fa fa-long-arrow-alt-right"></i></a>
-                                <p class="mt-4 mb-0">In our city, goats are allowed in all buildings.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="text-center p-4">
-                            <div class="d-inline-block rounded bg-light p-4 mb-4"><i class="fas fa-mail-bulk fa-5x text-secondary"></i></div>
-                            <div class="feature-content">
-                                <a href="#" class="h4">Crime <i class="fa fa-long-arrow-alt-right"></i></a>
-                                <p class="mt-4 mb-0">If you kill a goat you will be judged as if you had killed 2 people.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="text-center rounded p-4">
-                            <div class="d-inline-block rounded bg-light p-4 mb-4"><i class="fas fa-sitemap fa-5x text-secondary"></i></div>
-                            <div class="feature-content">
-                                <a href="#" class="h4">Work <i class="fa fa-long-arrow-alt-right"></i></a>
-                                <p class="mt-4 mb-0">Any citizen of this city has the opportunity to have up to two jobs instantly through a course.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="text-center rounded p-4">
-                            <div class="d-inline-block rounded bg-light p-4 mb-4"><i class="fas fa-tasks fa-5x text-secondary"></i></div>
-                            <div class="feature-content">
-                                <a href="#" class="h4">Jobs <i class="fa fa-long-arrow-alt-right"></i></a>
-                                <p class="mt-4 mb-0">Our city offers jobs you've never heard of before, from goat translator to goat nail cutter.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="my-3">
-                            <a href="#" class="btn btn-primary d-inline rounded-pill px-5 py-3">More Features</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-5 pt-5" style="margin-top: 6rem;">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
-                        <div class="feature-img RotateMoveLeft h-100" style="object-fit: cover;">
-                            <img src="img/features-1.png" class="img-fluid w-100 h-100" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.1s">
-                        <h4 class="text-primary">Website</h4>
-                        <h1 class="display-5 mb-4">This is a website that is intended to know a little about our city
-                        </h1>
-                        <p class="mb-4">On this website we explain some parts of GoatLand such as the important monuments, how we can find them, the national holidays, our currency and the flag among some others  
-                        </p>
-                        <div class="row g-4">
-                            <div class="col-6">
-                                <div class="d-flex">
-                                    <i class="fas fa-newspaper fa-4x text-secondary"></i>
-                                    <div class="d-flex flex-column ms-3">
-                                        <h2 class="mb-0 fw-bold">764</h2>
-                                        <small class="text-dark">Goat Counter</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="d-flex">
-                                    <i class="fas fa-users fa-4x text-secondary"></i>
-                                    <div class="d-flex flex-column ms-3">
-                                        <h2 class="mb-0 fw-bold">15237</h2>
-                                        <small class="text-dark">People counter</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="my-4">
-                            <a href="#" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Feature End -->
-
-
-       <!-- FAQ Start -->
-        <div class="container-fluid FAQ bg-light overflow-hidden py-5">
-            <div class="container py-5">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
-                       <div class="accordion" id="accordionExample">
-                            <div class="accordion-item border-0 mb-4">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseTOne">
-                                        What are the laws in the city?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body my-2">
-                                        
-                                        <p>No. 1 - Environmental Protection: Every citizen must plant at least one tree per year and participate in community recycling activities.
-</p>
-                                        <p>No. 2 - Free Education: Basic, secondary, and university education is a guaranteed right for all residents of Goat.</p>
-                                        <p>No. 3 - Equality of Rights: All people are equal before the law, regardless of gender, religion, race, or sexual orientation.</p>
-                                        <p>No. 4 - Mandatory Coffee Break: At 3 p.m., every person has the right to a coffee or tea break. If someone refuses, it's considered a minor offense!</p>
-                                        <p>No. 5 - Goats Have the Right to Participate in Official Meetings: If a goat enters a debate, they must be allowed to express their opinion (even if it's just bleating).</p>
-                                        <p>No. 6 - Every Plaza Must Have a Resident Artist: Whether a musician, painter, or storyteller, there must always be someone creating art in public spaces.</p>
-                                        <p>No. 7 - Every Year, a "Great Goat President" is Elected by Popular Vote: The goat can come from any background, as long as they show dignity and leadership (or at least don’t run away in the middle of the ceremony).</p>
-                                        <p>No. 8 - Protection of Public Green Spaces: Citizens must care for and maintain parks and green areas. Damage to these spaces will result in penalties and the obligation to repair the damages.</p>
-                                        <p>No. 9 - Renewable Energy Law: New buildings must be equipped with renewable energy sources, such as solar panels or wind systems, depending on the location. Companies must also adopt clean technologies to reduce their carbon footprint.</p>
-                                        <p>No. 10 - Sustainable Transportation Law: The use of public transportation, bicycles, and electric vehicles is encouraged. Fiscal incentives will be implemented for those who use these transportation methods, and excessive use of polluting vehicles will be penalized within the city.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item border-0 mb-4">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        What are the festivities in the city? 
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body my-2">
-                                        <h5>December - January</h5>
-                                        <h6>Kings GOAT</h6>
-                                        <p>It's about 3 kings mounted on goats with bells, which shine a diamond layer, and a gold crown, where they bring gifts to the children. Like a Christmas.</p>
-                                        <h5>February</h5>
-                                        <h6>GOAT race</h6>
-                                        <p>Bets are made on who will be the first winning goat.</p>
-                                        <h5>March</h5>
-                                        <h6>Tennis GOAT</h6>
-                                        <p>A tennis match is played, with tamed goats, since the players have to play sitting on top of a goat.</p>
-                                        <h5>April</h5>
-                                        <h6>GOAT polo</h6>
-                                        <p>Traditional polo, but instead of horses, the players are mounted on top of goats and try to hit a ball with sticks.</p>
-                                        <h5>May</h5>
-                                        <h6>Gladiator GOAT</h6>
-                                        <p>The most important party.It is celebrated in May on the 14th because it symbolizes the national day of goats.They specialized and trained in a school called Gloat, where they learned to fight and use weapons.They fought each other with a fencing sword organized by politicians.</p>
-                                        <h5>June</h5>
-                                        <h6>GOAT sumo</h6>
-                                        <p>Two goats in a circle; the owners can cheer them up, but not touch them. The one who pushes the other out wins.</p>
-                                        <h5>July</h5>
-                                        <h6>Swimming GOAT</h6>
-                                        <p>Where the goats make swimming races.</p>
-                                        <h5>August</h5>
-                                        <h6>GOAT parkour</h6>
-                                        <p>A goat in a race full of impossible platforms, jumping between buildings, climbing walls and using thruster horns to overcome obstacles.</p>
-                                        <h5>September</h5>
-                                        <h6>The Gala Goats Dance</h6>
-                                        <p>All guests must go with a goat dressed in costume. Elegance contests and a dance are organized where humans must dance with their goats to the rhythm of music.</p>
-                                        <h5>Octouber</h5>
-                                        <h6>Cheese making</h6>
-                                        <p>Each participant can create their own artisanal goat cheese, and whoever makes the best cheese, gets a prize.</p>
-                                        <h5>November</h5>
-                                        <h6>Cheese distribution</h6>
-                                        <p>Goat cheese ride, where tractors pass to give cheese to the inhabitants of the city.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item border-0">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        How do you make the city sustainable?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body my-2">
-                                        <p>1.Tiles that generate energy when pressed.</p>
-                                        <p>2.Starting at 12 at night, energy consumption should be 75% less than usual.</p>
-                                        <p>3.Make homes with recycled and reusable materials.</p>
-                                        <p>4.There are green areas enabled in the city.</p>
-                                        <p>5.Implement water saving practices.</p>
-                                        <p>6.Support and practice sustainable agriculture (using natural fertilizers and reducing pesticides).</p>
-                                        <p>7.Energy for effort: Physical activity in public spaces generates electricity, wich is stored and redistributed.</p>
-                                        <p>8.Environmentally friendy subway vehicles: These vehicles would run in underground tunnels, designed to transport people, purify the air and reuse CO2. </p>
-                                        <p>9.Trash-Eating Bots: They eat garbage and turn pollution into clean air or water.</p>
-                                        <p>10.Robot Trees: Artificial trees that clean the air and plant new trees if they see forests in danger.</p>
-                                        <p>11.A district heating network with renewable energy reduces emissions and costs by sharing efficient heating.</p>
-                                        <p>12.Goat utilizes solar panels on buildings, streets and parks, with shared microgrids, panel recycling and sustainable electric mobility.</p>
-                                    </div>
-                                </div>
-                            </div>
-                       </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
-                        <div class="FAQ-img RotateMoveRight rounded">
-                            <img src="img/about-1.png" class="img-fluid w-100" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FAQ End -->
-
-
-       <!-- Testimonial Start -->
-        <div class="container-fluid testimonial py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
-                    <h4 class="text-primary">Testimonial</h4>
-                    <h1 class="display-5 mb-4">What People Say About Us</h1>
-                    <p class="mb-0">We have a higher rating than any other city, why? We will let our people tell it!
-                    </p>
-                </div>
-                <div class="testimonial-carousel owl-carousel wow zoomInDown" data-wow-delay="0.2s">
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='img/testimonial-img-1.jpg' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="img/testimonial-img-1.jpg" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">Jessica Smith</h5>
-                                </div>
-                            </div>
-                            <p class="fs-7">As a police officer, I can say that this city has the perfect balance between fun and security. The administration truly cares about everyone's well-being, and although there are always challenges, the community is strong, and we work together to keep order. Without a doubt, one of the best cities I've ever been in.
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='img/testimonial-img-2.jpg' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="img/testimonial-img-2.jpg" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">Lauren Peach</h5>
-                                </div>
-                            </div>
-                            <p class="fs-7">Since opening my coffee here, I've been amazed by the community. People are welcoming and always support local businesses. There are many activities and events that keep the city feeling alive at all hours. Definitely a place worth staying in.
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='img/testimonial-img-3.jpg' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="img/testimonial-img-3.jpg" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">Lee Lee</h5>
-                                </div>
-                            </div>
-                            <p class="fs-7">I've been working at the city's auto shop for years, and there's no better place to live and work. The people are friendly, there's always something happening, and the traffic isn't chaotic like in other cities. Plus, the roads are well-maintained, which makes my job easier. Without a doubt, it's a perfect place for any motor enthusiast.
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-
-
-    <!-- Footer Start -->
-        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="text-dark mb-4">Company</h4>
-                            <a href=""> Why GoatLand?</a>
-                            <a href=""> Our Features</a>
-                            <a href=""> Our Portfolio</a>
-                            <a href=""> About Us</a>
-                            <a href=""> Our Blog & News</a>
-                            <a href=""> Get In Touch</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-dark">Quick Links</h4>
-                            <a href=""> About Us</a>
-                            <a href=""> Contact Us</a>
-                            <a href=""> Privacy Policy</a>
-                            <a href=""> Terms & Conditions</a>
-                            <a href=""> Our Blog & News</a>
-                            <a href=""> Our Team</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-dark">Services</h4>
-                            <a href=""> All Services</a>
-                            <a href=""> Promotional Emails</a>
-                            <a href=""> Product Updates</a>
-                            <a href=""> Email Marketing</a>
-                            <a href=""> Acquistion Emails</a>
-                            <a href=""> Retention Emails</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-dark">Contact Info</h4>
-                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> Carcer Way, GoatLand</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> goatland@bescity.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +666 345 67890</a>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-        
-        <!-- Copyright Start -->
-        <div class="container-fluid copyright py-4">
-            <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-md-0">
-                        <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>GoatLand</a>, All right reserved.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Copyright End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
-        
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    </body>
-
+    // Evitar que se pueda seleccionar el checkbox "No"
+    noCheckbox.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  </script>
+</body>
 </html>
